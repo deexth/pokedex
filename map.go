@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func commandMap(conf *config) error {
+func commandMap(conf *config, args ...string) error {
 	if conf.next == nil && conf.previous != nil {
 		return errors.New("you are on the last page")
 	}
@@ -26,7 +26,7 @@ func commandMap(conf *config) error {
 	return nil
 }
 
-func commandMapB(conf *config) error {
+func commandMapB(conf *config, args ...string) error {
 	if conf.previous == nil {
 		return errors.New("you are on the first page")
 	}

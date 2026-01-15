@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-func (c *Client) ExploreAPI(name *string) (LocationAreaDetails, error) {
-	url := "https://pokeapi.co/api/v2/location-area/" + *name
+func (c *Client) ExploreAPI(name string) (LocationAreaDetails, error) {
+	url := "https://pokeapi.co/api/v2/location-area/" + name
 
 	if data, ok := c.cache.Get(url); ok {
 		var locationAreaDetails LocationAreaDetails

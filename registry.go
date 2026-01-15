@@ -5,14 +5,13 @@ import "github.com/deexth/pokedex/api"
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(*config) error
+	callback    func(*config, ...string) error
 }
 
 type config struct {
 	pokeAPI  api.Client
 	next     *string
 	previous *string
-	name     *string
 	pokemon  map[string]api.Pokemon
 }
 

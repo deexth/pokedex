@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func commandPokedex(conf *config) error {
+func commandPokedex(conf *config, args ...string) error {
 	if len(conf.pokemon) == 0 {
 		fmt.Println("You have not caught any pokemon yet")
 		return nil

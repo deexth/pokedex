@@ -5,17 +5,16 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-
 )
 
-func commandClear(conf *config) error {
+func commandClear(conf *config, args ...string) error {
 	cmd := exec.Command("clear")
 	cmd.Stdout = os.Stdout
 	if errors.Is(cmd.Err, exec.ErrDot) {
 		cmd.Err = nil
 	}
 	if err := cmd.Run(); err != nil {
-	fmt.Println(err)
+		fmt.Println(err)
 	}
 	return nil
 }

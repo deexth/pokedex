@@ -20,8 +20,9 @@ func startRepl(conf *config) {
 
 		commandName := words[0]
 
-		if (commandName == "explore" || commandName == "catch") && len(words) == 2 {
-			conf.name = &words[1]
+		var args []string
+		if len(words) > 1 {
+			args = words[1:]
 		}
 
 		availableCommands := getCommands()
@@ -32,7 +33,7 @@ func startRepl(conf *config) {
 			continue
 		}
 
-		if err := cmmd.callback(conf); err != nil {
+		if err := cmmd.callback(conf, args...); err != nil {
 			fmt.Printf("something went wrong: %v", err)
 		}
 
