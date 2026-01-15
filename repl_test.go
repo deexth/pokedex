@@ -1,0 +1,39 @@
+package main
+
+import (
+	"reflect"
+	"testing"
+)
+
+func TestCleanInput(t *testing.T) {
+	cases := []struct {
+		input    string
+		expected []string
+	}{
+		{
+			input:    " hello World ",
+			expected: []string{"hello", "world"},
+		},
+		{
+			input:    "!!this is another test.",
+			expected: []string{"!!this", "is", "another", "test."},
+		},
+		{
+			input:    "thisisastring",
+			expected: []string{"thisisastring"},
+		},
+	}
+
+	for _, c := range cases {
+		actual := cleanInput(c.input)
+
+		for i := range actual {
+			word := actual[i]
+			expectedWord := c.expected[i]
+
+			if !reflect.DeepEqual(word, expectedWord) {
+				t.Fatalf("expected: %v, got: %v", expectedWord, word)
+			}
+		}
+	}
+}
